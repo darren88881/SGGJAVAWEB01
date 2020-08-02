@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         }else{
             writer.print("username and password not is null");
         }
-       // writer.close();
+       writer.close();
         System.out.println("post方法请求");
     }
 
