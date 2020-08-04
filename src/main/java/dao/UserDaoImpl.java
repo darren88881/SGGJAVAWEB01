@@ -28,8 +28,9 @@ public class UserDaoImpl implements UserDao {
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        User user = new User();
+        User user = null;
         while(resultSet.next()){
+            user = new User();
             user.setId(resultSet.getInt("id"));
             user.setUsername(resultSet.getString("username"));
             user.setPassword(resultSet.getString("password"));

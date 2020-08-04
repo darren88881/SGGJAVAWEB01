@@ -23,6 +23,7 @@ public class LoginServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+       request.setCharacterEncoding("UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -42,7 +43,7 @@ public class LoginServlet extends HttpServlet {
        writer.close();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doPost(request,response);
     }
 }
