@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
             User user = userDao.findUsername(username, password);
             if(user==null){
                 writer.print("用户名或密码错误");
+                response.sendRedirect("index.html");
             }else{
                 writer.print("登录成功");
             }
