@@ -34,6 +34,8 @@ public class LoginServlet extends HttpServlet {
             User user = userDao.findUsername(username, password);
             if(user==null){
                 request.setAttribute("error","登录名或密码错误！");
+                request.setAttribute("username",username);
+                request.setAttribute("password",password);
                 request.getRequestDispatcher("/index.jsp").forward(request,response);
             }else{
                 //writer.print("登录成功");
