@@ -4,6 +4,7 @@ import bean.User;
 import dao.UserDao;
 import dao.UserDaoImpl;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,16 +33,19 @@ public class LoginServlet extends HttpServlet {
         try {
             User user = userDao.findUsername(username, password);
             if(user==null){
-                writer.print("用户名或密码错误");
-                response.sendRedirect("index.html");
+                request.setAttribute("error","登录名或密码错误！");
+                request.getRequestDispatcher("/index.jsp").forward(request,response);
             }else{
-                writer.print("登录成功");
+                //writer.print("登录成功");
+                response.sendRedirect("/SGGJAVAWEB01/login.html");
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
         }
 
-       writer.close();
+        writer.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
