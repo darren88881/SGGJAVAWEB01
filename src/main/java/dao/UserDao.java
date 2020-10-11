@@ -10,4 +10,5 @@ import java.sql.SQLException;
  */
 public interface UserDao {
     User findUsername(String username, String password) throws SQLException;
+    Boolean verifyUsername(String username) throws SQLException;
 }

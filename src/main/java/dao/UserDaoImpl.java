@@ -39,4 +39,25 @@ public class UserDaoImpl implements UserDao {
 
         return user;
     }
+
+    @Override
+    public Boolean verifyUsername(String username) throws SQLException {
+        Connection connection = DaoUtil.getConnection();
+
+        String sql = "select * from user where username= ?";
+
+        //preparedStatement;编辑报表
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1,username);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if(resultSet.next()){
+
+            return true;
+        }
+
+        return false;
+    }
 }

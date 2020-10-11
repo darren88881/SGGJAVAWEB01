@@ -23,6 +23,7 @@ public class LoginServlet extends HttpServlet {
     private UserDao userDao = new UserDaoImpl();
 
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
        request.setCharacterEncoding("UTF-8");
         String username = request.getParameter("username");
@@ -50,6 +51,7 @@ public class LoginServlet extends HttpServlet {
         writer.close();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
     }

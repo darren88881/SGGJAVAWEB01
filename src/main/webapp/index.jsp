@@ -14,8 +14,22 @@
     <title>Title</title>
     <script type="text/javascript">
         function aaa(){
-
             document.getElementsByTagName("span")[0].innerHTML="";
+        }
+
+        function sendAjax(){
+            var unInput = document.getElementsByName("username")[0];
+            var xmlhttp = new XMLHttpRequest();
+            var url = "verifyUsername?"+unInput.name+"="+unInput.value;
+            xmlhttp.open("GET",url,true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    document.getElementsByTagName("span")[0].innerHTML=xmlhttp.responseText;
+                }
+            }
 
         }
 
@@ -24,7 +38,7 @@
 <body bgcolor="#ffe4c4">
 <h1>登录页面</h1>
 <form action="LoginServlet" method="get">
-    用户姓名:<input name="username" value="${ username }" onchange="aaa()">
+    用户姓名:<input name="username" value="${ username }" onchange="aaa()" onblur="sendAjax()">
     <span >${ error }</span><br>
     用户密码:<input name="password" type="password" value="${ password }"><br>
     <input value="提交" type="submit">
