@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Test</title>
+    <script type="text/javascript" src="script/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+         $(function(){
+            console.log($("#un").attr("name"));
+           $("#un").val("toma");
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <h1>登录页面</h1>
+    <form action="LoginServlet" method="get">
+        用户姓名:<input id="un" name="username" value="jake"><span></span><br>
+        用户密码:<input         name="password" type="password"><br>
+                <input value="提交"             type="submit">
+    </form>
+</body>
+</html>
