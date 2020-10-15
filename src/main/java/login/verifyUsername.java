@@ -21,7 +21,7 @@ public class verifyUsername extends HttpServlet {
     private UserDao userDao = new UserDaoImpl();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
 
     @Override
@@ -34,6 +34,8 @@ public class verifyUsername extends HttpServlet {
             if(aBoolean){
                 writer.print("");
             }else{
+                System.out.println("用户名不存在!");
+
                 writer.print("用户名不存在！");
             }
 
