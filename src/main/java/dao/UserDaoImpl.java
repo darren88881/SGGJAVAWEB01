@@ -1,12 +1,15 @@
 package dao;
 
 import Utils.DaoUtil;
+import bean.Employee;
 import bean.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author darren
@@ -36,7 +39,7 @@ public class UserDaoImpl implements UserDao {
             user.setPassword(resultSet.getString("password"));
 
         }
-
+        DaoUtil.closeConnection();
         return user;
     }
 
@@ -58,6 +61,36 @@ public class UserDaoImpl implements UserDao {
             return true;
         }
 
+        DaoUtil.closeConnection();
+
         return false;
+    }
+
+    @Override
+    public List<Employee> findAllEmp() throws SQLException {
+        List<Employee> emps = new ArrayList<Employee>();
+
+        Connection connection = DaoUtil.getConnection();
+
+        String sql = "select * from tbl_employee";
+
+        //preparedStatement;编辑报表
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+          Employee e =   new Employee();
+            int id = resultSet.getInt("id");
+            String lastName = resultSet.getString("last_name");
+            String gender   = resultSet.getString("gender");
+            String email    = resultSet.getString("email");
+            e.setId(id);
+            e.setLastName(lastName);
+            e.setGender(gender);
+            e.setEmail(email);
+            emps.add(e);
+
+        }
+        DaoUtil.closeConnection();
+        return emps;
     }
 }

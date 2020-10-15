@@ -1,5 +1,6 @@
 package login;
 
+import bean.Employee;
 import bean.User;
 import dao.UserDao;
 import dao.UserDaoImpl;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author darren
@@ -37,10 +39,16 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("error","登录名或密码错误！");
                 request.setAttribute("username",username);
                 request.setAttribute("password",password);
-                request.getRequestDispatcher("/index.jsp").forward(request,response);
+                //转发
+                request.getRequestDispatcher("/login.jsp").forward(request,response);
             }else{
                 //writer.print("登录成功");
-                response.sendRedirect("/SGGJAVAWEB01/login.html");
+                //重定向
+                //response.sendRedirect("/SGGJAVAWEB01/index.jsp");
+                List<Employee> emps =  userDao.findAllEmp();
+                System.out.println(emps.toString());
+                request.setAttribute("emps",emps);
+                request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request,response);
             }
         } catch (SQLException e) {
             e.printStackTrace();

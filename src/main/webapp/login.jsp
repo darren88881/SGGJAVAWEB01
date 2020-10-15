@@ -37,7 +37,7 @@
 </head>
 <body bgcolor="#ffe4c4">
 <h1>登录页面</h1>
-<form action="LoginServlet" method="get">
+<form action="LoginServlet" method="POST">
     用户姓名:<input name="username" value="${ username }" onchange="aaa()" onblur="sendAjax()">
     <span >${ error }</span><br>
     用户密码:<input name="password" type="password" value="${ password }"><br>
