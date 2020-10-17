@@ -7,6 +7,7 @@ import dao.UserDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,17 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("/login.jsp").forward(request,response);
             }else{
                 //writer.print("登录成功");
+                //cookie：保存密码7天
+                Cookie cookie1 = new Cookie("username",username);
+                Cookie cookie2 = new Cookie("password",password);
+                cookie1.setPath(request.getContextPath()+"/login.jsp");
+                cookie2.setPath(request.getContextPath()+"/login.jsp");
+                cookie1.setMaxAge(60 * 60 * 24 * 7);
+                cookie2.setMaxAge(60 * 60 * 24 * 7);
+
+                response.addCookie(cookie1);
+                response.addCookie(cookie2);
+
                 //重定向
                 //response.sendRedirect("/SGGJAVAWEB01/index.jsp");
                 List<Employee> emps =  userDao.findAllEmp();
