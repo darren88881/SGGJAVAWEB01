@@ -55,6 +55,8 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(cookie1);
                 response.addCookie(cookie2);
 
+                request.getSession().setAttribute("welcome",username);
+
                 //重定向
                 //response.sendRedirect("/SGGJAVAWEB01/index.jsp");
                 List<Employee> emps =  userDao.findAllEmp();

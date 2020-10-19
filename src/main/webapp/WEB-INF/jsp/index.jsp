@@ -13,7 +13,8 @@
     <title>班级同学表</title>
 </head>
 <body>
-    <table border="1">
+    <h2 align="center">欢迎${welcome}</h2>
+    <table border="1" align="center">
         <tr>
             <td>ID</td>
             <td>LASTNAME</td>
