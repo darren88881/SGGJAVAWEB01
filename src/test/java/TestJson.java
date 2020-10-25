@@ -16,14 +16,24 @@ public class TestJson {
     private UserDao dao = new UserDaoImpl();
 
     @Test
-    public void StringToJson() throws SQLException {
+    public void JavaToJson() throws SQLException {
 
         Gson gson = new Gson();
 
         List<Employee> allEmp = dao.findAllEmp();
         String Empjson = gson.toJson(allEmp);
         System.out.println(Empjson);
+    }
 
+    @Test
+    public void JsonToJava() throws SQLException {
 
+        Gson gson = new Gson();
+
+        List<Employee> allEmp = dao.findAllEmp();
+        String Empjson = gson.toJson(allEmp);
+        System.out.println("JSON对象："+Empjson);
+        List<Employee> object= (List<Employee>)gson.fromJson(Empjson, List.class);
+        System.out.println("JAVA对象："+object.toString());
     }
 }
