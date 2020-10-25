@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>cookie test</title>
+    <script type="text/javascript">
+        var person={
+            "name":"jack",
+            "age":23
+        };
+        console.log(typeof person);
+        var personStr = JSON.stringify(person);
+        console.log(typeof personStr);
+        var JsonPerson = JSON.parse(personStr);
+        console.log(typeof JsonPerson)
+    </script>
 </head>
 <body>
     <h3><a href="cookieTestServlet">cookie test</a></h3>
