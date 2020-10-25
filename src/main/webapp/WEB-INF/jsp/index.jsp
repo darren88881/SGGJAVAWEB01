@@ -14,6 +14,7 @@
 </head>
 <body>
     <h2 align="center">欢迎${welcome}</h2>
+    <h2 align="center">目前在线人数：${count}</h2>
     <table border="1" align="center">
         <tr>
             <td>ID</td>
